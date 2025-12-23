@@ -33,7 +33,6 @@
             position: relative;
         }
 
-        /* Étoiles animées en arrière-plan */
         .stars {
             position: fixed;
             top: 0;
@@ -57,7 +56,6 @@
             50% { opacity: 1; transform: scale(1.2); }
         }
 
-        /* Container principal */
         .container {
             position: relative;
             z-index: 1;
@@ -66,7 +64,6 @@
             padding: 40px 20px;
         }
 
-        /* Header */
         .header {
             text-align: center;
             margin-bottom: 50px;
@@ -103,7 +100,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Formulaire */
         .form-card {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(20px);
@@ -170,7 +166,6 @@
             line-height: 1.4;
         }
 
-        /* Options de choix */
         .options-grid {
             display: grid;
             gap: 12px;
@@ -217,7 +212,6 @@
             color: var(--cosmic-glow);
         }
 
-        /* Champs texte */
         .textarea-wrapper {
             position: relative;
         }
@@ -247,7 +241,6 @@
             color: rgba(255, 255, 255, 0.4);
         }
 
-        /* Bouton submit */
         .submit-btn {
             width: 100%;
             padding: 18px 40px;
@@ -289,7 +282,6 @@
             transform: translateY(-1px);
         }
 
-        /* Message de succès */
         .success-message {
             display: none;
             text-align: center;
@@ -333,7 +325,6 @@
             line-height: 1.6;
         }
 
-        /* Footer */
         .footer {
             text-align: center;
             margin-top: 40px;
@@ -343,7 +334,6 @@
             opacity: 0.7;
         }
 
-        /* Responsive */
         @media (max-width: 600px) {
             .container {
                 padding: 20px 15px;
@@ -369,19 +359,21 @@
     </style>
 </head>
 <body>
-    <!-- Étoiles en arrière-plan -->
     <div class="stars" id="stars"></div>
 
     <div class="container">
-        <!-- Header -->
         <header class="header">
             <h1 class="logo">Khint</h1>
             <p class="subtitle">Aidez-nous à construire la plateforme idéale pour vous</p>
         </header>
 
-        <!-- Formulaire -->
         <div class="form-card">
-            <form id="feedbackForm" action="https://formspree.io/f/mjgbprwk" method="POST">
+            <!-- ✅ Formulaire Formspree corrigé -->
+            <form id="feedbackForm" action="https://formspree.io/f/xgowplrb" method="POST">
+                <!-- 🔑 Champs obligatoires pour Formspree -->
+                <input type="hidden" name="_replyto" value="mathlove712@gmail.com@gmail.com">
+                <!-- ⚠️ ⚠️ ⚠️ REMPLACE CET EMAIL PAR LE TIEN SI DIFFÉRENT ⚠️ ⚠️ ⚠️ -->
+
                 <!-- Question 1 -->
                 <div class="question-group">
                     <label class="question-label">
@@ -557,7 +549,6 @@
                 <button type="submit" class="submit-btn">Envoyer mes réponses</button>
             </form>
 
-            <!-- Message de succès -->
             <div class="success-message" id="successMessage">
                 <div class="success-icon">🚀</div>
                 <h2 class="success-title">Merci pour votre contribution !</h2>
@@ -565,22 +556,18 @@
             </div>
         </div>
 
-        <!-- Footer -->
         <footer class="footer">
             <p>Khint © 2025 - Construisons ensemble l'avenir de l'apprentissage</p>
         </footer>
     </div>
 
     <script>
-        // Génération des étoiles
         function createStars() {
             const starsContainer = document.getElementById('stars');
             const numberOfStars = 100;
-
             for (let i = 0; i < numberOfStars; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
-                
                 const size = Math.random() * 3 + 1;
                 star.style.width = size + 'px';
                 star.style.height = size + 'px';
@@ -588,15 +575,12 @@
                 star.style.top = Math.random() * 100 + '%';
                 star.style.animationDelay = Math.random() * 3 + 's';
                 star.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                
                 starsContainer.appendChild(star);
             }
         }
 
-        // Soumission du formulaire
         document.getElementById('feedbackForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
             const form = this;
             const submitBtn = form.querySelector('.submit-btn');
             submitBtn.textContent = 'Envoi en cours...';
@@ -606,13 +590,10 @@
                 const response = await fetch(form.action, {
                     method: 'POST',
                     body: new FormData(form),
-                    headers: {
-                        'Accept': 'application/json'
-                    }
+                    headers: { 'Accept': 'application/json' }
                 });
                 
                 if (response.ok) {
-                    // Affichage du message de succès
                     form.style.display = 'none';
                     document.getElementById('successMessage').style.display = 'block';
                     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -626,7 +607,6 @@
             }
         });
 
-        // Initialisation
         createStars();
     </script>
 </body>
